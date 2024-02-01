@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Streaming with WebRTC</title>
+    <style>
+        /* CSS styles for video element */
+        #videoElement {
+            width: 100%; /* Set width to 100% of parent container */
+            height: auto; /* Maintain aspect ratio */
+            border: 1px solid #ccc; /* Optional: Add border for visual clarity */
+        }
+        
+        /* Container to hold video element */
+        #videoContainer {
+            width: 400px; /* Set desired width of camera window */
+            height: 300px; /* Set desired height of camera window */
+            margin: 0 auto; /* Center the container horizontally */
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Streaming with WebRTC</h1>
+    <div id="videoContainer">
+        <video id="videoElement" autoplay playsinline></video> <!-- Video element to display camera feed -->
+    </div>
+    <script>
+        // JavaScript code to access camera and display feed
+        navigator.mediaDevices.getUserMedia({ video: true }) // Access the camera
+            .then(function(stream) {
+                var videoElement = document.getElementById('videoElement');
+                videoElement.srcObject = stream; // Set camera stream as video source
+            })
+            .catch(function(err) {
+                console.error('Error accessing camera:', err);
+            });
+    </script>
+</body>
+</html>
